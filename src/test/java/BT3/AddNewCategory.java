@@ -27,7 +27,7 @@ public class AddNewCategory extends BaseTest {
         String login = "//a[@class = 'text-reset d-inline-block opacity-60 py-2' and normalize-space() = 'Login']";
         WebElement buttonLogin = driver.findElement(By.xpath(login));
         buttonLogin.click();
-        Thread.sleep(1000);
+        Thread.sleep(500);
 
 
         // Validate Login form
@@ -38,7 +38,6 @@ public class AddNewCategory extends BaseTest {
         softAssert.assertTrue(driver.findElement(By.xpath("//button[@class= 'btn btn-primary btn-block fw-600']")).isEnabled(), "Login button is NOT enable");
         Assert.assertTrue(driver.findElement(By.xpath("//input[@id = 'email']")).getAttribute("type").equals("email"), "Fail type of email");
         Assert.assertTrue(driver.findElement(By.xpath("//input[@id = 'password']")).getAttribute("type").equals("password"), "Fail type of password");
-
         String email = "//input[@id = 'email']";
         String password = "//input[@id = 'password']";
         String submitLogin = "//button[normalize-space()='Login']";
@@ -49,19 +48,27 @@ public class AddNewCategory extends BaseTest {
         WebElement checkMessageEmail = driver.findElement(By.xpath(messageEmail));
         Assert.assertEquals(checkMessageEmail.getText().trim(), "The email field is required when phone is not present.", "Message valid Email");
 
-        Thread.sleep(1000);
+        Thread.sleep(500);
+        driver.findElement(By.xpath(email)).sendKeys("cashier");
+        driver.findElement(By.xpath(password)).sendKeys("12345678");
+        driver.findElement(By.xpath(submitLogin)).click();
+        Assert.assertTrue(driver.findElement(By.id("email")).getAttribute("validationMessage").contains("Please include an '@' in the email address."));
+        System.out.println(driver.findElement(By.id("email")).getAttribute("validationMessage"));
+        Thread.sleep(500);
+
+        Thread.sleep(500);
         driver.findElement(By.xpath(email)).sendKeys("cashierngan002@gmail.com");
         driver.findElement(By.xpath(password)).sendKeys("12345678");
         driver.findElement(By.xpath(submitLogin)).click();
-        Thread.sleep(1000);
+        Thread.sleep(500);
 
 
         Assert.assertTrue(driver.findElement(By.xpath("//span[normalize-space() = 'Invalid login credentials']")).getText().trim().equals("Invalid login credentials"), "Verify password fail");
-        Thread.sleep(1000);
+        Thread.sleep(500);
         driver.findElement(By.xpath(email)).sendKeys("cashierngan002@gmail.com");
         driver.findElement(By.xpath(password)).sendKeys("123456");
         driver.findElement(By.xpath(submitLogin)).click();
-        Thread.sleep(1000);
+        Thread.sleep(500);
         softAssert.assertAll();
     }
 
@@ -100,7 +107,7 @@ public class AddNewCategory extends BaseTest {
         Assert.assertTrue(driver.findElement(By.id("name")).getAttribute("type").equals("text"), "Fail type input");
         String categoryName = "name";
         WebElement enterCategoryName = driver.findElement(By.id(categoryName));
-        enterCategoryName.sendKeys("Ngan_Beer");
+        enterCategoryName.sendKeys("Ngannn_beer");
         Thread.sleep(500);
 
         // Select Parent Category
@@ -122,6 +129,14 @@ public class AddNewCategory extends BaseTest {
         Assert.assertTrue(driver.findElement(By.xpath(orderingNumber)).getAttribute("type").equals("number"), "Fail type of Ordering Number");
         Assert.assertTrue(driver.findElement(By.xpath(orderingNumber)).getAttribute("placeholder").equals("Order Level"));
         WebElement enterOrderingNumber = driver.findElement(By.xpath(orderingNumber));
+        enterOrderingNumber.sendKeys("e");
+        Thread.sleep(200);
+        driver.findElement(By.xpath("//button[@class = 'btn btn-primary']")).click();
+        Thread.sleep(500);
+        System.out.println(enterOrderingNumber.getAttribute("validationMessage"));
+        Assert.assertTrue(enterOrderingNumber.getAttribute("validationMessage").contains("Please enter a number."));
+        Thread.sleep(500);
+        enterOrderingNumber.clear();
         enterOrderingNumber.sendKeys("3");
         Thread.sleep(500);
 
@@ -226,12 +241,12 @@ public class AddNewCategory extends BaseTest {
 
         Assert.assertTrue(driver.findElement(By.xpath("//h1[normalize-space() = 'All categories']")).getText().trim().equals("All categories"), "Fail All Categories Page");
         Assert.assertTrue(driver.findElement(By.xpath("//input[@id='search']")).getAttribute("placeholder").equals("Type name & Enter"), "Fail search textbox");
-        driver.findElement(By.xpath("//input[@id='search']")).sendKeys("Ngan_Beer", Keys.ENTER);
+        driver.findElement(By.xpath("//input[@id='search']")).sendKeys("Ngannn_beer", Keys.ENTER);
         Thread.sleep(2000);
 
-        System.out.println("Count quantity category by Name is Ngan_beer: " + driver.findElements(By.xpath("//td[normalize-space()='Ngan_Beer']")).size());
+        System.out.println("Count quantity category by Name is Ngannn_beer: " + driver.findElements(By.xpath("//td[normalize-space()='Ngannn_beer']")).size());
 
-        Assert.assertTrue(driver.findElement(By.xpath("(//td[normalize-space()='Ngan_Beer'])[1]")).getText().trim().equals("Ngan_Beer"));
+        Assert.assertTrue(driver.findElement(By.xpath("(//td[normalize-space()='Ngannn_beer'])[1]")).getText().trim().equals("Ngannn_beer"));
 
     }
 }
