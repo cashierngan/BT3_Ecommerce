@@ -1,6 +1,7 @@
 package BT3;
 
 import Common.BaseTest;
+import Common.LoginPage;
 import org.checkerframework.checker.units.qual.A;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -16,60 +17,7 @@ public class AddNewCategory extends BaseTest {
     @Test(priority = 1, description = "Login to HRM")
     public void Login() throws InterruptedException {
 
-        driver.get("https://ecommerce.anhtester.com/users/login");
-
-        SoftAssert softAssert = new SoftAssert();
-
-        String popup = "//button[@class = 'absolute-top-right bg-white shadow-lg btn btn-circle btn-icon mr-n3 mt-n3 set-session' ]";
-        WebElement closepopup = driver.findElement(By.xpath(popup));
-        closepopup.click();
-
-        String login = "//a[@class = 'text-reset d-inline-block opacity-60 py-2' and normalize-space() = 'Login']";
-        WebElement buttonLogin = driver.findElement(By.xpath(login));
-        buttonLogin.click();
-        Thread.sleep(500);
-
-
-        // Validate Login form
-        System.out.println("*** Verify The Content Of Login Form **");
-        Assert.assertTrue(driver.findElement(By.xpath("//h1[normalize-space() = 'Login to your account.']")).getText().trim().equals("Login to your account."), "Fail Title Login Form");
-        softAssert.assertTrue(driver.findElement(By.xpath("//input[@id = 'email']")).getAttribute("placeholder").equals("Email"), "Fail Email Placeholder");
-        softAssert.assertTrue(driver.findElement(By.xpath("//input[@id = 'password']")).getAttribute("placeholder").equals("Password"), "Fail Password Placeholder");
-        softAssert.assertTrue(driver.findElement(By.xpath("//button[@class= 'btn btn-primary btn-block fw-600']")).isEnabled(), "Login button is NOT enable");
-        Assert.assertTrue(driver.findElement(By.xpath("//input[@id = 'email']")).getAttribute("type").equals("email"), "Fail type of email");
-        Assert.assertTrue(driver.findElement(By.xpath("//input[@id = 'password']")).getAttribute("type").equals("password"), "Fail type of password");
-        String email = "//input[@id = 'email']";
-        String password = "//input[@id = 'password']";
-        String submitLogin = "//button[normalize-space()='Login']";
-
-        // Login fail without email/ password
-        driver.findElement(By.xpath(submitLogin)).click();
-        String messageEmail = "//strong[text() = 'The email field is required when phone is not present.']";
-        WebElement checkMessageEmail = driver.findElement(By.xpath(messageEmail));
-        Assert.assertEquals(checkMessageEmail.getText().trim(), "The email field is required when phone is not present.", "Message valid Email");
-
-        Thread.sleep(500);
-        driver.findElement(By.xpath(email)).sendKeys("cashier");
-        driver.findElement(By.xpath(password)).sendKeys("12345678");
-        driver.findElement(By.xpath(submitLogin)).click();
-        Assert.assertTrue(driver.findElement(By.id("email")).getAttribute("validationMessage").contains("Please include an '@' in the email address."));
-        System.out.println(driver.findElement(By.id("email")).getAttribute("validationMessage"));
-        Thread.sleep(500);
-
-        Thread.sleep(500);
-        driver.findElement(By.xpath(email)).sendKeys("cashierngan002@gmail.com");
-        driver.findElement(By.xpath(password)).sendKeys("12345678");
-        driver.findElement(By.xpath(submitLogin)).click();
-        Thread.sleep(500);
-
-
-        Assert.assertTrue(driver.findElement(By.xpath("//span[normalize-space() = 'Invalid login credentials']")).getText().trim().equals("Invalid login credentials"), "Verify password fail");
-        Thread.sleep(500);
-        driver.findElement(By.xpath(email)).sendKeys("cashierngan002@gmail.com");
-        driver.findElement(By.xpath(password)).sendKeys("123456");
-        driver.findElement(By.xpath(submitLogin)).click();
-        Thread.sleep(500);
-        softAssert.assertAll();
+        LoginPage.login(driver, "cashierngan002@gmail.com","123456");
     }
 
     @Test(priority = 2, description = "Add Category")
@@ -176,7 +124,7 @@ public class AddNewCategory extends BaseTest {
         Thread.sleep(500);
 
         // Upload image Icon (32x32)
-        String imgBanner = "//img[@src = '//ecommerce.anhtester.com/public/uploads/all/GgQwb4fVJDvkA0Ii9Q7OZErEQQ7mdhO4fdObTHT6.jpg']";
+        String imgBanner = "//img[@src = '//ecommerce.anhtester.com/public/uploads/all/0dFo0MIU5zZXJxHle7BnBRl83fFcvP3qSjB6lTgq.png']";
         WebElement clickImgBanner = driver.findElement(By.xpath(imgBanner));
         clickImgBanner.click();
         Thread.sleep(500);

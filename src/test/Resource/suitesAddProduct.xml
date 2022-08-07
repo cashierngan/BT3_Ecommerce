@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite" verbose="1">
+    <test name="Login test">
+        <classes>
+            <class name="BT4_POM.testcases.AddProductTest">
+                <methods>
+<!--                    <include name="testAddProduct"></include>-->
+                    <include name="testAddProductWithRequiredData"></include>
+                </methods>
+            </class>
+
+
+
+        </classes>
+    </test>
+</suite>

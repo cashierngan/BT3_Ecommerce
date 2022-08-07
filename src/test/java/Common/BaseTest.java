@@ -15,16 +15,17 @@ public class BaseTest {
 
 
     public static WebDriver driver;
-    @BeforeTest
+    @BeforeMethod
     public static void createDriver() throws InterruptedException {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
+        Thread.sleep(2000);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
     }
 
-    @AfterTest
+    @AfterMethod
     public static void closeDriver(){
         try {
             Thread.sleep(1000);
