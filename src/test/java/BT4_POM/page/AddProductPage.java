@@ -30,7 +30,6 @@ public class AddProductPage {
 
         Actions action = new Actions(driver);
         js = (JavascriptExecutor) driver;
-        new LoginPage(driver).Login(email,password);
 
         WebUI.clickElement(productMenu);
         WebUI.clickElement(addNewProduct);
