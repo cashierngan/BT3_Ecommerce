@@ -55,7 +55,7 @@ public class AddNewCategory extends BaseTest {
         Assert.assertTrue(driver.findElement(By.id("name")).getAttribute("type").equals("text"), "Fail type input");
         String categoryName = "name";
         WebElement enterCategoryName = driver.findElement(By.id(categoryName));
-        enterCategoryName.sendKeys("Ngannn_beer");
+        enterCategoryName.sendKeys("cocktail");
         Thread.sleep(500);
 
         // Select Parent Category
@@ -189,12 +189,26 @@ public class AddNewCategory extends BaseTest {
 
         Assert.assertTrue(driver.findElement(By.xpath("//h1[normalize-space() = 'All categories']")).getText().trim().equals("All categories"), "Fail All Categories Page");
         Assert.assertTrue(driver.findElement(By.xpath("//input[@id='search']")).getAttribute("placeholder").equals("Type name & Enter"), "Fail search textbox");
-        driver.findElement(By.xpath("//input[@id='search']")).sendKeys("Ngannn_beer", Keys.ENTER);
+        driver.findElement(By.xpath("//input[@id='search']")).sendKeys("cocktail", Keys.ENTER);
         Thread.sleep(2000);
 
-        System.out.println("Count quantity category by Name is Ngannn_beer: " + driver.findElements(By.xpath("//td[normalize-space()='Ngannn_beer']")).size());
+        System.out.println("Count quantity category by Name is cocktail: " + driver.findElements(By.xpath("//td[normalize-space()='cocktail']")).size());
 
-        Assert.assertTrue(driver.findElement(By.xpath("(//td[normalize-space()='Ngannn_beer'])[1]")).getText().trim().equals("Ngannn_beer"));
+        Assert.assertTrue(driver.findElement(By.xpath("(//td[normalize-space()='cocktail'])[1]")).getText().trim().equals("cocktail"));
+
+        driver.findElement(By.xpath("(//a[@class = 'btn btn-soft-primary btn-icon btn-circle btn-sm'])[1]")).click();
+        Thread.sleep(500);
+        Assert.assertTrue(driver.findElement(By.xpath("//input[@id = 'name']")).getAttribute("value").equals("cocktail"));
+        Assert.assertTrue(driver.findElement(By.xpath("//div[contains(text(),'---- Brand PC')]")).getText().trim().equals("---- Brand PC"));
+        Assert.assertTrue(driver.findElement(By.xpath("//input[@id='order_level']")).getAttribute("value").equals("3"));
+        Assert.assertTrue(driver.findElement(By.xpath("//div[contains(text(),'Digital')]")).getText().trim().equals("Digital"));
+        Assert.assertTrue(driver.findElement(By.xpath("(//div[@class = 'form-control file-amount'])[1]")).getText().trim().equals("1 File selected"));
+        Assert.assertTrue(driver.findElement(By.xpath("(//div[@class = 'form-control file-amount'])[2]")).getText().trim().equals("1 File selected"));
+        Assert.assertTrue(driver.findElement(By.xpath("//input[@placeholder='Meta Title']")).getAttribute("value").equals("@@ NNN @@"));
+        Assert.assertTrue(driver.findElement(By.xpath("//textarea[@name='meta_description']")).getText().trim().contains("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"));
+        Assert.assertTrue(driver.findElement(By.xpath("//input[@id='slug']")).getAttribute("value").contains("cocktail-"));
+        Assert.assertTrue(driver.findElement(By.xpath("(//div[@class='filter-option-inner-inner' and normalize-space()='Size, Fabric'])[1]")).getText().trim().equals("Size, Fabric"));
+
 
     }
 }
