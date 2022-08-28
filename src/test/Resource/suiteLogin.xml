@@ -3,18 +3,13 @@
 <suite name="Suite" verbose="1">
     <test name="Login test">
         <classes>
-            <!--            <class name="BT3.AddNewCategory" />-->
-            <class name="BT4_POM.testcases.LoginTest" >
+            <class name="BT5.testcases.LoginTest" >
                 <methods>
                     <include name="testLoginNullRequired"></include>
                     <include name="testLoginValidEmail"></include>
                     <include name="testLogin"></include>
                 </methods>
-
             </class>
-
-
-
         </classes>
     </test>
 </suite>

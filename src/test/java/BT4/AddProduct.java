@@ -68,7 +68,7 @@ public class AddProduct extends BaseTest {
 
         Thread.sleep(500);
 //        driver.findElement(By.xpath("//input[@name = 'name']")).sendKeys(DataEcommerce.PRODUCT_NAME );
-        WebUI.enterText( By.xpath("//input[@name = 'name']"), DataEcommerce.PRODUCT_NAME);
+        WebUI.setText( By.xpath("//input[@name = 'name']"), DataEcommerce.PRODUCT_NAME);
         Thread.sleep(500);
         action.keyDown(Keys.CONTROL).sendKeys(Keys.END).keyUp(Keys.CONTROL).build().perform();
         driver.findElement(By.xpath(submitAddProduct)).click();
@@ -147,7 +147,7 @@ public class AddProduct extends BaseTest {
         driver.findElement(By.xpath("(//div[contains(text(),'Nothing selected')])[1]")).click();
         Thread.sleep(500);
 //        driver.findElement(By.xpath("//input[@aria-controls = 'bs-select-4']")).sendKeys("aqua");
-        WebUI.enterText( By.xpath("//input[@aria-controls = 'bs-select-4']"), "aqua");
+        WebUI.setText( By.xpath("//input[@aria-controls = 'bs-select-4']"), "aqua");
         action.keyDown(Keys.CONTROL).sendKeys(Keys.ARROW_DOWN).keyUp(Keys.CONTROL).keyUp(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).build().perform();
         Thread.sleep(500);
 //        driver.findElement(By.xpath("//input[@aria-controls = 'bs-select-4']")).clear();
@@ -155,7 +155,7 @@ public class AddProduct extends BaseTest {
         WebUI.clearText( By.xpath("//input[@aria-controls = 'bs-select-4']"));
 //        driver.findElement(By.xpath("//input[@aria-controls = 'bs-select-4']")).sendKeys("crim",Keys.ENTER);
 //        Thread.sleep(500);
-        WebUI.enterText( By.xpath("//input[@aria-controls = 'bs-select-4']"), "crim");
+        WebUI.setText( By.xpath("//input[@aria-controls = 'bs-select-4']"), "crim");
         action.keyDown(Keys.ENTER).keyUp(Keys.ENTER);
 //        driver.findElement(By.xpath("//div[contains(text(),'2 items selected')]")).click();
         Thread.sleep(500);
@@ -166,18 +166,18 @@ public class AddProduct extends BaseTest {
         WebUI.clickElement(By.xpath("//span[normalize-space() = 'Fabric']"));
         js.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(By.xpath("//h5[normalize-space()='Product price + stock']")));
         WebUI.clearText( By.xpath("//input[@name = 'unit_price']"));
-        WebUI.enterText( By.xpath("//input[@name = 'unit_price']"), "3000");
+        WebUI.setText( By.xpath("//input[@name = 'unit_price']"), "3000");
         WebUI.clickElement( By.xpath("//input[@placeholder='Select Date']"));
         WebUI.clickElement( By.xpath("//div[@class='drp-calendar left']//select[@class='hourselect']"));
         WebUI.clickElement(By.xpath("//div[@class = 'drp-calendar left']//select[@class = 'hourselect']//option[@value = 7]"));
         WebUI.clickElement( By.xpath("//button[@class = 'applyBtn btn btn-sm btn-primary']"));
         WebUI.clearText( By.xpath("//input[@placeholder='Discount']"));
-        WebUI.enterText( By.xpath("//input[@placeholder='Discount']"), "10");
+        WebUI.setText( By.xpath("//input[@placeholder='Discount']"), "10");
 //        WebUI.clearText( By.xpath("//input[@placeholder='Quantity']"));
 //        WebUI.enterText( By.xpath("//input[@placeholder='Quantity']"), "99");
 //        WebUI.enterText( By.xpath("//input[@placeholder='SKU']"),DataEcommerce.PRODUCT_SKU);
-        WebUI.enterText( By.xpath("//input[@placeholder='External link']"), "https://anhtester.com/lesson/selenium-java-bai-14-cach-dung-javascript-executor-de-hanh-dong");
-        WebUI.enterText( By.xpath("//div[@role='textbox']"), DataEcommerce.PRODUCT_DESCRIPTION);
+        WebUI.setText( By.xpath("//input[@placeholder='External link']"), "https://anhtester.com/lesson/selenium-java-bai-14-cach-dung-javascript-executor-de-hanh-dong");
+        WebUI.setText( By.xpath("//div[@role='textbox']"), DataEcommerce.PRODUCT_DESCRIPTION);
         WebUI.clickElement( By.xpath("(//div[normalize-space()='Choose File'])[3]"));
         WebUI.clickElement( By.xpath("//a[normalize-space()='Upload New']"));
         driver.findElement(By.xpath("//input[@class='uppy-Dashboard-input']")).sendKeys(System.getProperty("user.dir") + "/src/main/resources/sample.pdf");

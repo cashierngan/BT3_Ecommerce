@@ -1,6 +1,7 @@
 package Common;
 
 public class DataEcommerce {
+    public static String URL = "https://ecommerce.anhtester.com/users/login";
     public static String EMAIL = "cashierngan002@gmail.com";
     public static String EMAILINVALID = "cashierngan002";
     public static String PASSWORD = "123456";
